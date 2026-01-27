@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     [DefaultExecutionOrder(-100)]
     [DisallowMultipleComponent]

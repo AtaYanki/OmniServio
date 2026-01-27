@@ -77,7 +77,7 @@ Create a bootstrapper to register your services. You can use either a Global or 
 **Global OmniServio** (persists across scenes):
 
 ```csharp
-using AtaYanki.OmniServio;
+using Omni.Servio;
 using UnityEngine;
 
 public class GlobalBootstrapper : OmniServioGlobalBootstrapper
@@ -97,7 +97,7 @@ public class GlobalBootstrapper : OmniServioGlobalBootstrapper
 **Scene OmniServio** (per-scene):
 
 ```csharp
-using AtaYanki.OmniServio;
+using Omni.Servio;
 using UnityEngine;
 
 public class SceneBootstrapper : OmniServioSceneBootstrapper
@@ -117,7 +117,7 @@ public class SceneBootstrapper : OmniServioSceneBootstrapper
 **Method 1: Manual Retrieval**
 
 ```csharp
-using AtaYanki.OmniServio;
+using Omni.Servio;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
 **Method 2: Automatic Dependency Injection (Recommended)**
 
 ```csharp
-using AtaYanki.OmniServio;
+using Omni.Servio;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -220,7 +220,7 @@ public class ConfigManager : MonoBehaviour
 You can also manually trigger injection:
 
 ```csharp
-using AtaYanki.OmniServio;
+using Omni.Servio;
 
 public class CustomComponent : MonoBehaviour
 {
@@ -312,7 +312,7 @@ OmniServio.Global
 For components that need to receive services registered at runtime, inherit from `RuntimeInjectable`:
 
 ```csharp
-using AtaYanki.OmniServio;
+using Omni.Servio;
 using UnityEngine;
 
 public class MyComponent : RuntimeInjectable

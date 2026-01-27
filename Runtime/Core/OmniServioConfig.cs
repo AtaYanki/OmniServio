@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEditor;
 #endif
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public class OmniServioConfig : ScriptableObject
     {

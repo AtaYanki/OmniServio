@@ -1,8 +1,8 @@
 using UnityEngine;
-using AtaYanki.OmniServio;
+using Omni.Servio;
 using UnityEngine.SceneManagement;
 
-namespace AtaYanki.OmniServio.Samples
+namespace Omni.Servio.Samples
 {
     public class SampleSceneBootstrapper : OmniServioSceneBootstrapper
     {

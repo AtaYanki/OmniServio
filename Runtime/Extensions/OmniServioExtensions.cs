@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public static class OmniServioExtensions
     {

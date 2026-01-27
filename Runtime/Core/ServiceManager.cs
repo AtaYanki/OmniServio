@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public class ServiceManager
     {

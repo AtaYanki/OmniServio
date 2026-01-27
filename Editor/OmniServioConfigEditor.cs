@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace AtaYanki.OmniServio.Editor
+namespace Omni.Servio.Editor
 {
     [CustomEditor(typeof(OmniServioConfig))]
     public class OmniServioConfigEditor : UnityEditor.Editor

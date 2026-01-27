@@ -1,6 +1,8 @@
 using UnityEngine;
+using System.Collections;
+using Omni.Servio;
 
-namespace AtaYanki.OmniServio.Samples
+namespace Omni.Servio.Samples
 {
     public class SampleDependencyInjection : MonoBehaviour
     {
@@ -20,10 +22,86 @@ namespace AtaYanki.OmniServio.Samples
 
         #endregion
 
+        [Header("Runtime Injection Demo")]
+        [SerializeField] private GameObject runtimeInjectablePrefab;
+        [SerializeField] private bool enableRuntimeInjectionDemo = true;
+
         private void Start()
         {
             LogInjectionResults();
             UseInjectedServices();
+
+            // Start runtime injection demo coroutine
+            if (enableRuntimeInjectionDemo)
+            {
+                StartCoroutine(RuntimeInjectionDemo());
+            }
+        }
+
+        /// <summary>
+        /// Demonstrates runtime dependency injection.
+        /// Waits 5 seconds, then registers services at runtime, then instantiates a RuntimeInjectable component.
+        /// </summary>
+        private IEnumerator RuntimeInjectionDemo()
+        {
+            Debug.Log("[SampleDependencyInjection] Starting runtime injection demo...");
+            Debug.Log("[SampleDependencyInjection] Waiting 5 seconds before registering services at runtime...");
+
+            // Wait 5 seconds
+            yield return new WaitForSeconds(5f);
+
+            Debug.Log("[SampleDependencyInjection] 5 seconds elapsed. Registering services at runtime...");
+
+            // Register services at runtime (simulating delayed service registration)
+            OmniServio omniServio = OmniServio.For(this);
+            
+            if (omniServio != null)
+            {
+                // Register AudioService at runtime
+                if (!omniServio.TryGet<IAudioService>(out _))
+                {
+                    omniServio.Register<IAudioService>(new AudioService());
+                    Debug.Log("[SampleDependencyInjection] ✓ Registered IAudioService at runtime");
+                }
+
+                // Register SaveService at runtime (global)
+                if (!OmniServio.Global.TryGet<ISaveService>(out _))
+                {
+                    OmniServio.Global.Register<ISaveService>(new SaveService());
+                    Debug.Log("[SampleDependencyInjection] ✓ Registered ISaveService at runtime (global)");
+                }
+
+                // Register GameplayService at runtime
+                if (!omniServio.TryGet<IGameplayService>(out _))
+                {
+                    omniServio.Register<IGameplayService>(new GameplayService());
+                    Debug.Log("[SampleDependencyInjection] ✓ Registered IGameplayService at runtime");
+                }
+
+                // Wait a moment for events to propagate
+                yield return new WaitForSeconds(0.5f);
+
+                // Now instantiate the RuntimeInjectable component
+                Debug.Log("[SampleDependencyInjection] Instantiating RuntimeInjectable component...");
+                
+                GameObject runtimeInjectableGO;
+                if (runtimeInjectablePrefab != null)
+                {
+                    runtimeInjectableGO = Instantiate(runtimeInjectablePrefab);
+                }
+                else
+                {
+                    // Create GameObject with SampleRuntimeInjectable component
+                    runtimeInjectableGO = new GameObject("SampleRuntimeInjectable");
+                    runtimeInjectableGO.AddComponent<SampleRuntimeInjectable>();
+                }
+
+                Debug.Log("[SampleDependencyInjection] ✓ RuntimeInjectable component created. It will automatically receive services when they become available!");
+            }
+            else
+            {
+                Debug.LogWarning("[SampleDependencyInjection] Could not find OmniServio instance. Runtime injection demo skipped.");
+            }
         }
 
 
@@ -112,6 +190,14 @@ namespace AtaYanki.OmniServio.Samples
             GUILayout.Label("S - Save game");
             GUILayout.Label("T - Show timer");
             GUILayout.Label("R - Re-inject dependencies");
+
+            GUILayout.Space(10);
+            if (enableRuntimeInjectionDemo)
+            {
+                GUILayout.Label("=== Runtime Injection Demo ===", GUI.skin.box);
+                GUILayout.Label("Services will be registered after 5 seconds");
+                GUILayout.Label("RuntimeInjectable component will be created");
+            }
 
             GUILayout.Space(10);
             if (_gameTimer != null)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public abstract class RuntimeInjectable : MonoBehaviour
     {

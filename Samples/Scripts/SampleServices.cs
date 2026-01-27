@@ -1,7 +1,7 @@
 using UnityEngine;
-using AtaYanki.OmniServio;
+using Omni.Servio;
 
-namespace AtaYanki.OmniServio.Samples
+namespace Omni.Servio.Samples
 {
     #region Service Interfaces
 

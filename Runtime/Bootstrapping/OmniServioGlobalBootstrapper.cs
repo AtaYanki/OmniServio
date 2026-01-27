@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     [DefaultExecutionOrder(-100)]
     [AddComponentMenu("OmniServio/OmniServio Global")]

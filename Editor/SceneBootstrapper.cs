@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
 
-namespace AtaYanki.OmniServio.Editor
+namespace Omni.Servio.Editor
 {
     [InitializeOnLoad]
     public class SceneBootstrapper
@@ -210,7 +210,7 @@ namespace AtaYanki.OmniServio.Editor
             if (!EditorApplication.isPlaying)
                 return false;
 
-            System.Type bootstrapperType = System.Type.GetType("AtaYanki.OmniServio.Bootstrapper, Assembly-CSharp");
+            System.Type bootstrapperType = System.Type.GetType("Omni.Servio.Bootstrapper, Omni.Servio.Runtime");
             if (bootstrapperType == null)
             {
                 return true;

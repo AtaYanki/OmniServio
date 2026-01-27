@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
-using AtaYanki.OmniServio;
+using Omni.Servio;
 
-namespace AtaYanki.OmniServio.Editor
+namespace Omni.Servio.Editor
 {
     public static class OmniServioMenuItems
     {

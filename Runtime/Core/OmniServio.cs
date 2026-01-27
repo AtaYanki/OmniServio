@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public class OmniServio : MonoBehaviour
     {

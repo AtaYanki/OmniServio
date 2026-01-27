@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Reflection;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public class WarningExceptionHandler : IInjectionExceptionHandler
     {

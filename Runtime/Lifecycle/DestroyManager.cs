@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public interface IDestroyable
     {

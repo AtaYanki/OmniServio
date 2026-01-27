@@ -1,6 +1,6 @@
 using System;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = true)]
     public class InjectAttribute : Attribute

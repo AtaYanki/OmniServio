@@ -1,6 +1,7 @@
 using UnityEngine;
+using Omni.Servio;
 
-namespace AtaYanki.OmniServio.Samples
+namespace Omni.Servio.Samples
 {
     public class SampleGlobalBootstrapper : OmniServioGlobalBootstrapper
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
-namespace AtaYanki.OmniServio
+namespace Omni.Servio
 {
     public enum InjectionExceptionHandlerMode
     {
