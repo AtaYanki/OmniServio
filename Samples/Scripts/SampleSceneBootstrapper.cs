@@ -1,6 +1,4 @@
 using UnityEngine;
-using Omni.Servio;
-using UnityEngine.SceneManagement;
 
 namespace Omni.Servio.Samples
 {

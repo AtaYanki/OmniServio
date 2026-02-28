@@ -9,7 +9,7 @@ namespace Omni.Servio
     public abstract class Bootstrapper : MonoBehaviour
     {
         private OmniServio _omniServio;
-        internal OmniServio OmniServio => _omniServio.OrNull() ?? (_omniServio = GetComponent<OmniServio>());
+        protected internal OmniServio OmniServio => _omniServio.OrNull() ?? (_omniServio = GetComponent<OmniServio>());
 
         private bool _hasBeenBootstrapped;
         private bool _isBootstrapComplete = false;
