@@ -13,11 +13,11 @@ namespace Omni.Servio
         [SerializeField] private InjectionExceptionHandlerMode defaultExceptionHandlerMode = InjectionExceptionHandlerMode.Warning;
 
         [Header("Bootstrap Scene Settings")]
-        [Tooltip("Reference to the global bootstrap scene. This scene will be loaded first to initialize services.")]
-#if UNITY_EDITOR
-        [SerializeField] private SceneAsset globalBootstrapScene;
-#else
         [SerializeField] private string globalBootstrapSceneName;
+
+#if UNITY_EDITOR
+        [Tooltip("Reference to the global bootstrap scene. This scene will be loaded first to initialize services.")]
+        [SerializeField] private SceneAsset globalBootstrapScene;
 #endif
 
         [Tooltip("Whether to automatically load the bootstrap scene when entering Play mode in the editor.")]
@@ -30,9 +30,9 @@ namespace Omni.Servio
 
 #if UNITY_EDITOR
         public SceneAsset GlobalBootstrapScene => globalBootstrapScene;
-#else
-        public string GlobalBootstrapSceneName => globalBootstrapSceneName;
 #endif
+
+        public string GlobalBootstrapSceneName => globalBootstrapSceneName;
 
         public bool AutoLoadBootstrapSceneInEditor => autoLoadBootstrapSceneInEditor;
 
@@ -53,15 +53,7 @@ namespace Omni.Servio
 
         public string GetBootstrapSceneName()
         {
-#if UNITY_EDITOR
-            if (globalBootstrapScene == null)
-            {
-                return null;
-            }
-            return globalBootstrapScene.name;
-#else
             return globalBootstrapSceneName;
-#endif
         }
 
         public void SetExceptionHandlerMode(InjectionExceptionHandlerMode mode)
@@ -76,14 +68,22 @@ namespace Omni.Servio
         public void SetGlobalBootstrapScene(SceneAsset scene)
         {
             globalBootstrapScene = scene;
+            if (scene != null)
+                globalBootstrapSceneName = scene.name;
             EditorUtility.SetDirty(this);
         }
-#else
+
+        private void OnValidate()
+        {
+            if (globalBootstrapScene != null)
+                globalBootstrapSceneName = globalBootstrapScene.name;
+        }
+#endif
+
         public void SetGlobalBootstrapSceneName(string sceneName)
         {
             globalBootstrapSceneName = sceneName;
         }
-#endif
 
         public static OmniServioConfig Instance
         {
@@ -96,7 +96,7 @@ namespace Omni.Servio
 
 #if UNITY_EDITOR
                 _instance = Resources.Load<OmniServioConfig>("OmniServioConfig");
-                
+
                 if (_instance == null)
                 {
                     string[] guids = AssetDatabase.FindAssets("t:OmniServioConfig");
@@ -125,4 +125,3 @@ namespace Omni.Servio
         }
     }
 }
-
