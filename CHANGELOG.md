@@ -174,6 +174,14 @@ This release introduces runtime dependency injection, configurable error handlin
 
 ---
 
+## [2.0.1] - 2026-03-05
+
+### 🐛 Fixed
+
+- **Build Error: Serialization layout mismatch** - `OmniServioConfig` used `#if UNITY_EDITOR` to swap between `SceneAsset` and `string` fields, causing incompatible serialization layouts between editor and player builds. The `globalBootstrapSceneName` string is now always serialized, with `SceneAsset` as an additional editor-only field that syncs via `OnValidate`.
+
+---
+
 ## Roadmap
 
 ### Completed ✅
